@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.grid-container {
+    max-width: 480px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+    border: solid 1px black;
+}
