@@ -1,6 +1,5 @@
 const gridBox = document.getElementById('grid-container');
 let boxCount = 16;
-
 function creatGrid() {  
     for (let i = 0; i < boxCount; i++) {
         const div = document.createElement('div');
@@ -13,6 +12,18 @@ function creatGrid() {
         }
     }
 }
-
-
 creatGrid();
+
+const boxes = document.querySelectorAll('.box');
+
+boxes.forEach(box => {
+    box.addEventListener('mouseover', () => {
+        box.classList.add('colored');
+    })
+})
+
+boxes.forEach(box => {
+    box.addEventListener('click', () => {
+        box.classList.remove('colored');
+    })
+})
