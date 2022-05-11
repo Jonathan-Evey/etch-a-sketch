@@ -1,31 +1,80 @@
 const gridBox = document.getElementById('grid-container');
+let hex = "000000";
+let colorType = "black";
 
+const colorChoiceBtns = document.querySelectorAll('.color-select-btn')
 
 const gridSizeBtns = document.querySelectorAll('.grid-size-btn');
-/*---remove original grid and makes a new one that is selected---*/
-gridSizeBtns.forEach(addBtnEvent);
+/*---checks for a click on the grid buttons, when clicked removes original grid and makes selected grid---*/
+gridSizeBtns.forEach(addGridBtnEvent);
+colorChoiceBtns.forEach(addColorBtnEvent);
 
-/*Colors box on grid when the mouse moves over it*/
+/*---check to see if mouse is being clicked/held---*/
+let mouseDown = false;
+document.body.onmousedown = function() {
+    mouseDown = true;
+}
+document.body.onmouseup = function() {
+    mouseDown = false;
+}
+
+/*Colors box when the mouse moves over it and removes color if the mouse is also clicked/held*/
 function colorBoxes(){
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box => {
-        box.addEventListener('mouseover', () => {
-            box.classList.add('colored');
+        box.addEventListener('mouseenter', e => {
+            if (colorType == "gradient") {
+                checkCurrentGradient(e);
+                }
+            if (colorType == "WormPalette") {
+                currentWormPalette(e);
+            }
+            if (mouseDown === true) {
+                e.target.style.backgroundColor = null;
+            }
+            if (mouseDown === false) {
+                e.target.style.backgroundColor = `#${hex}`;
+            }
+            removeColor();
+            resetColor();
         })
     })
 }
+
+
 
 /*-------Removes color when a box is clicked--------*/
 function removeColor() {
     const boxes = document.querySelectorAll('.box');
     boxes.forEach(box => {
-        box.addEventListener('click', () => {
-            box.classList.remove('colored');
+        box.addEventListener('mousedown', () => {
+            box.style.backgroundColor = null;
         })
     })
 }
 
-/*---------Generates the starting drawing area grid----------*/
+/*--Checks for color-btn click/if clicked updates drawing color--*/
+function addColorBtnEvent(btn) {
+    btn.addEventListener('click', () => {
+        if(btn.id === "btn-black") {
+            colorType = "black";
+            hex = "000000";
+        }
+        if(btn.id === "btn-gradient") {
+            colorType = "gradient";
+            hex = "ebebeb";
+        }
+        if(btn.id === "btn-worm") {
+            colorType = "WormPalette";
+            hex = "780116";
+        }
+        if(btn.id === "btn-cool") {
+            creatGrid(48);
+        } 
+    }) 
+}
+
+/*---------Generates drawing grid----------*/
 function creatGrid(num) {  
     for (let i = 0; i < num; i++) {
         const div = document.createElement('div');
@@ -39,8 +88,8 @@ function creatGrid(num) {
     }
 }    
 
-
-function addBtnEvent(btn) {
+/*--Checks the grid-btns for a click/if clicked makes a new grid--*/
+function addGridBtnEvent(btn) {
     btn.addEventListener('click', () => {
         for (let i = gridBox.children.length - 1; i >= 0; i--) {
             if (gridBox.hasChildNodes()) {
@@ -62,6 +111,74 @@ function addBtnEvent(btn) {
         colorBoxes();
         removeColor();
     }) 
+}
+
+function resetColor() {
+    if(colorType === "black") {
+        hex = "000000";
+    }
+    if(colorType === "gradient") {
+        hex = "ebebeb";
+    }
+}
+/*---check current gray scale gradient to set the right color---*/
+function checkCurrentGradient(e) {
+    if (e.target.style.backgroundColor === null) {
+        hex = "ebebeb";
+    }
+    if (e.target.style.backgroundColor === "rgb(235, 235, 235)") {
+        hex = "cecece";
+    }
+    if (e.target.style.backgroundColor === "rgb(206, 206, 206)") {
+        hex = "b1b1b1";
+    }
+    if (e.target.style.backgroundColor === "rgb(177, 177, 177)") {
+        hex = "969696";
+    }
+    if (e.target.style.backgroundColor === "rgb(150, 150, 150)") {
+        hex = "7b7b7b";
+    }
+    if (e.target.style.backgroundColor === "rgb(123, 123, 123)") {
+        hex = "626262";
+    }
+    if (e.target.style.backgroundColor === "rgb(98, 98, 98)") {
+        hex = "494949";
+    }
+    if (e.target.style.backgroundColor === "rgb(73, 73, 73)") {
+        hex = "323232";
+    }
+    if (e.target.style.backgroundColor === "rgb(50, 50, 50)") {
+        hex = "1c1c1c";
+    }
+    if (e.target.style.backgroundColor === "rgb(28, 28, 28)") {
+        hex = "000000";
+    }
+    if (e.target.style.backgroundColor === "rgb(0, 0, 0)") {
+        hex = "000000";
+    }
+    else {
+        hex = hex;
+    }
+}
+
+function currentWormPalette(e) {
+if (e.target.style.backgroundColor === null || e.target.style.backgroundColor === "rgb(247, 181, 56)") {
+    hex = "780116";
+}
+if (e.target.style.backgroundColor === "rgb(120, 1, 22)") {
+    hex = "C32F27";
+}
+if (e.target.style.backgroundColor === "rgb(195, 47, 39)") {
+    hex = "D8572A";
+}
+if (e.target.style.backgroundColor === "rgb(216, 87, 42)") {
+    hex = "DB7C26";
+}
+if (e.target.style.backgroundColor === "rgb(219, 124, 38)") {
+    hex = "F7B538";
+} else {
+    hex = hex;
+}
 }
 
 window.onload = creatGrid(16);
