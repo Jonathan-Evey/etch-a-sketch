@@ -3,10 +3,10 @@ let hex = "000000";
 let colorType = "black";
 
 const colorChoiceBtns = document.querySelectorAll('.color-select-btn')
-
 const gridSizeBtns = document.querySelectorAll('.grid-size-btn');
 /*---checks for a click on the grid buttons, when clicked removes original grid and makes selected grid---*/
 gridSizeBtns.forEach(addGridBtnEvent);
+/*---checks for click on color buttons, when clicked updateds color palette---*/
 colorChoiceBtns.forEach(addColorBtnEvent);
 
 /*---check to see if mouse is being clicked/held---*/
@@ -26,8 +26,11 @@ function colorBoxes(){
             if (colorType == "gradient") {
                 checkCurrentGradient(e);
                 }
-            if (colorType == "WormPalette") {
+            if (colorType == "wormPalette") {
                 currentWormPalette(e);
+            }
+            if (colorType == "coldPalette") {
+                currentColdPalette(e);
             }
             if (mouseDown === true) {
                 e.target.style.backgroundColor = null;
@@ -65,11 +68,12 @@ function addColorBtnEvent(btn) {
             hex = "ebebeb";
         }
         if(btn.id === "btn-worm") {
-            colorType = "WormPalette";
+            colorType = "wormPalette";
             hex = "780116";
         }
-        if(btn.id === "btn-cool") {
-            creatGrid(48);
+        if(btn.id === "btn-cold") {
+            colorType = "coldPalette"
+            hex = "E8F9FD";
         } 
     }) 
 }
@@ -120,10 +124,13 @@ function resetColor() {
     if(colorType === "gradient") {
         hex = "ebebeb";
     }
+    if(colorType == "wormPalette") {
+    hex = "780116";
+    }
 }
 /*---check current gray scale gradient to set the right color---*/
 function checkCurrentGradient(e) {
-    if (e.target.style.backgroundColor === null) {
+    if (e.target.style.backgroundColor === '') {
         hex = "ebebeb";
     }
     if (e.target.style.backgroundColor === "rgb(235, 235, 235)") {
@@ -162,7 +169,7 @@ function checkCurrentGradient(e) {
 }
 
 function currentWormPalette(e) {
-if (e.target.style.backgroundColor === null || e.target.style.backgroundColor === "rgb(247, 181, 56)") {
+if (e.target.style.backgroundColor === '' || e.target.style.backgroundColor === "rgb(247, 181, 56)") {
     hex = "780116";
 }
 if (e.target.style.backgroundColor === "rgb(120, 1, 22)") {
@@ -180,6 +187,26 @@ if (e.target.style.backgroundColor === "rgb(219, 124, 38)") {
     hex = hex;
 }
 }
+
+function currentColdPalette(e) {
+    if (e.target.style.backgroundColor === '' || e.target.style.backgroundColor === "rgb(85, 52, 165)") {
+        hex = "E8F9FD";
+    }
+    if (e.target.style.backgroundColor === "rgb(232, 249, 253)") {
+        hex = "79DAE8";
+    }
+    if (e.target.style.backgroundColor === "rgb(121, 218, 232)") {
+        hex = "0AA1DD";
+    }
+    if (e.target.style.backgroundColor === "rgb(10, 161, 221)") {
+        hex = "2155CD";
+    }
+    if (e.target.style.backgroundColor === "rgb(33, 85, 205)") {
+        hex = "5534A5";
+    } else {
+        hex = hex;
+    }
+    }
 
 window.onload = creatGrid(16);
 colorBoxes();
