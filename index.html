@@ -9,9 +9,29 @@
 </head>
 <body>
     <script src="script.js" defer></script>
+    <header>
+        <h1>Pixel Sketch</h1>
+    </header>
 
-    <div class="grid-container" id="grid-container">
-        <!--JavaScript will add in a grid here-->
-    </div>
+
+    <section>
+        <div class="color-selector-container">
+            <button class="btn color-select-btn">Black</button>
+            <button class="btn color-select-btn">Gradient</button>
+            <button class="btn color-select-btn">Warm Colors</button>
+            <button class="btn color-select-btn">Cool Colors</button>
+        </div>
+        <div class="grid-container-border"> 
+            <div class="grid-container" id="grid-container">
+                <!--JavaScript will add in a grid here-->
+            </div>
+        </div> 
+        <div class="size-selection-container">
+            <button class="btn grid-size-btn" id="btn-16">16X16</button>
+            <button class="btn grid-size-btn" id="btn-24">24X24</button>
+            <button class="btn grid-size-btn" id="btn-32">32X32</button>
+            <button class="btn grid-size-btn" id="btn-48">48X48</button>
+        </div>
+    </section>
 </body>
 </html>
