@@ -6,9 +6,8 @@
 :root {
     --clr-light:#ffffff;
     --clr-dark: #000000;
-    --clr-primary: #dbffa2;
-    --clr-secondary: #c3fcf2;
-    --clr-accent: #ff7750;
+
+    --clr-accent:#000000;
 
     --clr-lightrgb: 255, 255, 255;
     --clr-darkrgb: 0, 0, 0;
@@ -40,13 +39,12 @@
 
 .darkmode {
     --clr-light: #1a181a;
-    --clr-dark: #eee3c1;
-    
-    --clr-secondary: #434038;
-    --clr-accent: #d1342f;
+    --clr-dark: #d2e6f7;
 
-    --clr-lightrgb: 26, 24, 26;
-    --clr-darkrgb: 238, 227, 193;
+    --clr-accent: #409ced; 
+
+    --clr-lightrgb: 255, 255, 255;
+    --clr-darkrgb: 38, 70, 112;
 
     --boxGrid: rgba(var(--clr-darkrgb), .1);
 
@@ -75,7 +73,7 @@
 
 body {
     background-color: var(--clr-light);
-    color: var(--clr-dark);
+    color: var(--clr-accent);
     padding: 0;
     margin: 0;
     text-align: center;
@@ -101,7 +99,7 @@ h3 {
 p {
     margin: 0;
     padding: 0;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
     text-shadow: var(--textShadow1),
                  var(--textShadow2);
@@ -110,9 +108,9 @@ p {
 .dark-mode-toggle {
     position: absolute;
     z-index: 100;
-    top: 1em;
-    right: 1em;
-    color: var(--foreground);
+    top: 2em;
+    right: 2em;
+    color: var(--clr-dark);
     border: 2px solid currentColor;
     padding: 4px;
     background: transparent;
@@ -231,15 +229,18 @@ section {
 }
 
 .btn-worm:hover {
+    color: black;
     background-image: linear-gradient(to bottom right, rgb(120, 1, 22), rgb(195, 47, 39), rgb(216, 87, 42), rgb(219, 124, 38), rgb(247, 181, 56));
 }
 
 .btn-cold:hover {
+    color: black;
     background-image: linear-gradient(to bottom right, rgb(232, 249, 253), rgb(121, 218, 232), rgb(10, 161, 221), rgb(33, 85, 205), rgb(85, 52, 165));
 }
 
 .box {
-    border: solid 1px var(--boxGrid);
+    border: solid 1px rgb(0, 0, 0, .1);
+    background-color: white;
 }
 
 .grid-16 {
