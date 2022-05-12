@@ -8,6 +8,7 @@
     --clr-dark: #000000;
 
     --clr-accent:#000000;
+    --clr-btnText: #ffffff;
 
     --clr-lightrgb: 255, 255, 255;
     --clr-darkrgb: 0, 0, 0;
@@ -40,8 +41,9 @@
 .darkmode {
     --clr-light: #1a181a;
     --clr-dark: #d2e6f7;
-
+    
     --clr-accent: #409ced; 
+    --clr-btnText: #d2e6f7;
 
     --clr-lightrgb: 255, 255, 255;
     --clr-darkrgb: 38, 70, 112;
@@ -218,14 +220,14 @@ section {
 }
 
 .btn-black:hover {
-    background-color: var(--clr-dark);
-    color: var(--clr-light);
+    background-color: black;
+    color: var(--clr-btnText);
 }
 
 
 .btn-gray-gradient:hover {
     background-image: linear-gradient(to bottom right, rgb(235, 235, 235), rgb(0, 0, 0));
-    color: white;
+    color: var(--clr-btnText);
 }
 
 .btn-worm:hover {
