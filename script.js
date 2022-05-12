@@ -2,6 +2,32 @@ const gridBox = document.getElementById('grid-container');
 let hex = "000000";
 let colorType = "black";
 
+let darkMode = localStorage.getItem('darkmode');
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+
+
+const enableDarkMode = () => {
+    document.body.classList.add('darkmode');
+    localStorage.setItem('darkmode', 'enabled');
+}
+const disableDarkMode = () => {
+    document.body.classList.remove('darkmode');
+    localStorage.setItem('darkmode', null);
+}
+
+if (darkMode === 'enabled') {
+    enableDarkMode();
+}
+
+darkModeToggle.addEventListener('click', () => {
+    darkMode = localStorage.getItem('darkmode');
+    if(darkMode !== 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+})
+
 const colorChoiceBtns = document.querySelectorAll('.color-select-btn')
 const gridSizeBtns = document.querySelectorAll('.grid-size-btn');
 /*---checks for a click on the grid buttons, when clicked removes original grid and makes selected grid---*/
